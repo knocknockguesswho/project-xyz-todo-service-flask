@@ -11,3 +11,7 @@
 3. run> `pip install -r requirements.txt`
 4. fill **.example.env** with your own configs, and rename it to **.env**
 6. run> `flask run` (flask will run depends on config at **.flaskenv**) by default, your app will run on port **5002**
+
+### Request Sample
+Download this collection in JSON format and import to your postman.
+**Postman Collection**: https://www.getpostman.com/collections/301ecc58396dd6c25a27
