@@ -20,7 +20,7 @@ class UpdateController:
       try:
         todo_name = request.form['todo_name']
         Query(Todos, session).filter(Todos.id == id).update({Todos.todo_name: todo_name}, synchronize_session=False)
-        response_helper.remove_datas()
+        response_helper.remove_data()
       except Exception as e:
         response_helper.set_to_failed(str(e),400)
       finally:
@@ -37,7 +37,7 @@ class UpdateController:
     with Session() as session:
       try:
         Query(Todos, session).filter(Todos.id == id).update({Todos.done: 1}, synchronize_session=False)
-        response_helper.remove_datas()
+        response_helper.remove_data()
       except Exception as e:
         response_helper.set_to_failed(str(e),400)
       finally:

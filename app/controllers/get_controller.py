@@ -70,7 +70,7 @@ class GetController:
     return
       - if `date_start` is not set, would set to default as 1900-01-01
       - if `date_end` is not set, would set to default as 2100-12-31
-      - if `total_item` is not set, would return all of datas match to date
+      - if `total_item` is not set, would return all of data match to date
     """
     response_helper = ResponseHelper()
     limit = default_or_int(10, request.args.get('limit'))
@@ -80,9 +80,9 @@ class GetController:
         date_start = request.form['date_start']
         date_end = request.form['date_end']
         query = Query(Todos, session).filter(Todos.id > last_id, Todos.created_at.between(date_start, date_end))
-        datas = [data.get_item() for data in query.limit(limit).all()]
-        if len(datas) == 0: raise NoResultFound
-        response_helper.set_data(datas)
+        data = [data.get_item() for data in query.limit(limit).all()]
+        if len(data) == 0: raise NoResultFound
+        response_helper.set_data(data)
       except Exception as e:
         status_code = 400
         msg = str(e)
@@ -113,9 +113,9 @@ class GetController:
     with Session() as session:
       try:
         query = Query(Todos, session).filter(Todos.id > last_id, Todos.user_id == user_id)
-        datas = [data.get_item() for data in query.limit(limit).all()]
-        if len(datas) == 0: raise NoResultFound
-        response_helper.set_data(datas)
+        data = [data.get_item() for data in query.limit(limit).all()]
+        if len(data) == 0: raise NoResultFound
+        response_helper.set_data(data)
       except Exception as e:
         status_code = 400
         msg = str(e)
@@ -146,9 +146,9 @@ class GetController:
     with Session() as session:
       try:
         query = Query(Todos, session).filter(Todos.user_id == user_id, Todos.id > last_id, Todos.done == 1)
-        datas = [data.get_item() for data in query.limit(limit).all()]
-        if len(datas) == 0: raise NoResultFound
-        response_helper.set_data(datas)
+        data = [data.get_item() for data in query.limit(limit).all()]
+        if len(data) == 0: raise NoResultFound
+        response_helper.set_data(data)
       except Exception as e:
         status_code = 400
         msg = str(e)

@@ -27,7 +27,7 @@ class PostController:
         else: parent_id = None
         session.add(Todos(user_id=user_id, todo_name=todo_name, parent_id=parent_id, done=None))
         session.commit()
-        response_helper.remove_datas()
+        response_helper.remove_data()
       except Exception as e:
         if e.__cause__ is not None: response_helper.set_to_failed(str(e.__cause__), 400)
         else: response_helper.set_to_failed(str(e), 400)
